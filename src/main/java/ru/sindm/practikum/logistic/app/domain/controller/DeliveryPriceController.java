@@ -11,11 +11,11 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/delivery")
-public class DeliveryController {
+public class DeliveryPriceController {
 
     private final DeliveryPriceService deliveryPriceService;
 
-    public DeliveryController(DeliveryPriceService deliveryPriceService) {
+    public DeliveryPriceController(DeliveryPriceService deliveryPriceService) {
         this.deliveryPriceService = deliveryPriceService;
     }
 
