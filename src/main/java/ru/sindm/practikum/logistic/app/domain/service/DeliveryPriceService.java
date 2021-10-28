@@ -41,13 +41,13 @@ public class DeliveryPriceService {
     }
 
     private Long getCargoSizeCharge(String cargoSize) throws DeliveryPriceCalculateException {
-        CargoSizeTariff tariff = Optional.of(CargoSizeTariff.getTariffRateByCargoSize(cargoSize))
+        CargoSizeTariff tariff = Optional.ofNullable(CargoSizeTariff.getTariffRateByCargoSize(cargoSize))
                 .orElseThrow(() -> new DeliveryPriceCalculateException("Invalid cargo size"));
         return tariff.getTariffRate();
     }
 
     private Long getLogisticNetworkLoadCharge(Long price, String logisticNetworkLoad) throws DeliveryPriceCalculateException {
-        LogisticNetworkLoadTariff tariff = Optional.of(LogisticNetworkLoadTariff.getByLoadState(logisticNetworkLoad))
+        LogisticNetworkLoadTariff tariff = Optional.ofNullable(LogisticNetworkLoadTariff.getByLoadState(logisticNetworkLoad))
                 .orElseThrow(() -> new DeliveryPriceCalculateException("Invalid delivery network load"));
         return (long) (price * tariff.getRatio());
     }
